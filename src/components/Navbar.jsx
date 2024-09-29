@@ -1,27 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Logo from "../assets/images/logo.svg"
 import { Link, NavLink } from 'react-router-dom'
-import { BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileFillIcon } from '../assets/images/Icons'
+import { BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileFillIcon ,HomeIconActive, ExploreIconActive, NotificationsIconActive, BookmarksIconActive, ListsIconActive} from '../assets/images/Icons'
 import Button from './Button'
 import LogOutModal from './LogOutModal'
 import { Context } from '../context/AuthContext'
 function Navbar() {
+    const user = JSON.parse(localStorage.getItem("token"))
+    const {isOpenModal, setIsOpenModal} = useContext(Context)
+
+    
+    
+    const [path, setPath] = useState("Home")
+    console.log(path);
+
     const navbarList = [
         {
             id:1,
-            icon:<HomeIcon/>,
+            icon:path == "Home" ? <HomeIconActive/> : <HomeIcon/>  ,
             title:"Home",
             path: "/"
         },
         {
             id:2,
-            icon:<ExploreIcon/>,
+            icon:path == "Explore" ? <ExploreIconActive/> : <ExploreIcon/>,
             title:"Explore",
             path: "/explore"
         },
         {
             id:3,
-            icon:<NotificationsIcon/>,
+            icon:path == "Notifications" ? <NotificationsIconActive/> : <NotificationsIcon/>,
             title:"Notifications",
             path: "/notifications"
         },
@@ -33,13 +41,13 @@ function Navbar() {
         },
         {
             id:5,
-            icon:<BookmarksIcon/>,
+            icon:path == "Bookmarks" ? <BookmarksIconActive/> : <BookmarksIcon/>,
             title:"Bookmarks",
             path: "/bookmarks"
         },
         {
             id:6,
-            icon:<ListsIcon/>,
+            icon:path == "Lists" ? <ListsIconActive/> : <ListsIcon/>,
             title:"Lists",
             path: "/lists"
         },
@@ -57,12 +65,25 @@ function Navbar() {
         },
 
     ]
-    const user = JSON.parse(localStorage.getItem("token"))
-    const {isOpenModal, setIsOpenModal} = useContext(Context)
+
+   
+    
 
     function handleLogOut(){
         localStorage.clear()
         window.location.reload()
+    }
+
+
+    function handleNavLinkClick(e){
+
+        if(e.target.textContent){
+            setPath(e.target.textContent)
+        }
+        // else{
+        //     console.log(e.target.nextElementChild);
+            
+        // }
     }
 
   return (
@@ -72,7 +93,7 @@ function Navbar() {
       </Link>
       <div className="mt-[49px] space-y-[30px]">
         {navbarList.map(item => (
-            <NavLink className={"flex font-semibold text-[18px] leading-[23px] items-center space-x-5"} key={item.id} to={item.path}>
+            <NavLink onClick={handleNavLinkClick} className={"flex font-semibold text-[18px] leading-[23px] items-center space-x-5"} key={item.id} to={item.path}>
                 {item.icon}
                 <span>{item.title}</span>
             </NavLink>
@@ -91,6 +112,7 @@ function Navbar() {
             </button>
         </div>
       </div>
+
       <LogOutModal>
         <p className='font-semibold text-[35px] text-center '>Do u wanna log out ?</p>
         <div className="flex items-center justify-between mt-5">
