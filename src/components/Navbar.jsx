@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import Logo from "../assets/images/logo.svg"
 import { Link, NavLink } from 'react-router-dom'
-import { BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileFillIcon ,HomeIconActive, ExploreIconActive, NotificationsIconActive, BookmarksIconActive, ListsIconActive} from '../assets/images/Icons'
+import { BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileFillIcon ,HomeIconActive, ExploreIconActive, NotificationsIconActive, BookmarksIconActive, ListsIconActive, ProfileFillIconActive} from '../assets/images/Icons'
 import Button from './Button'
 import LogOutModal from './LogOutModal'
 import { Context } from '../context/AuthContext'
@@ -53,7 +53,7 @@ function Navbar() {
         },
         {
             id:7,
-            icon:<ProfileFillIcon/>,
+            icon:path == "Profile" ? <ProfileFillIconActive/> : <ProfileFillIcon/>,
             title:"Profile",
             path: "/profile"
         },
@@ -87,7 +87,7 @@ function Navbar() {
     }
 
   return (
-    <div className='w-[25%] relative h-[100vh] overflow-y-auto pt-[31px] pl-[100px] pr-[15px]'>
+    <div className='w-[25%] border-r-[2px] border-r-[#D8D8D8] relative h-[100vh] overflow-y-auto pt-[31px] pl-[100px] pr-[15px]'>
       <Link to={"/"}>
         <img src={Logo} alt="site logo img" width={40} height={33} />
       </Link>
