@@ -66,7 +66,7 @@ function Login() {
       <h2 className='font-black text-[42px] leading-[49px] my-[37px] ml-[9px]'>Log in to Twitter</h2>
       <LoginInput extraStyle={"mb-[25px]"} placeholder={"Phone number, email address"} name={"login"} type={"text"} />
       <LoginInput placeholder={"Password"} name={"password"} type={"password"} />
-      <Button extraStyle={"mt-[25px] h-[59px]  hover:bg-transparent border-[2px] hover:border-[#1DA1F2] hover:text-[#1DA1F2] duration-300"} type={"submit"} >
+      <Button extraStyle={"mt-[25px] w-full h-[59px]  hover:bg-transparent border-[2px] hover:border-[#1DA1F2] hover:text-[#1DA1F2] duration-300"} type={"submit"} >
       
         {isLoading ? <img className='scale-[3] mx-auto' src={loading} alt="loading img" width={22} />: "Log In"}
       </Button>

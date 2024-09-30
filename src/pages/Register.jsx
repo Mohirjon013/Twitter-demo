@@ -42,7 +42,7 @@ function Register() {
         <p className='text-[16px] leading-[24px] mt-[10px] text-[#000] opacity-60'>Facilisi sem pulvinar velit nunc, gravida scelerisque amet nibh sit. Quis bibendum ante phasellus metus, magna lacinia sed augue. Odio enim nascetur leo mauris vel eget. Pretium id ullamcorper blandit viverra dignissim eget tellus. Nibh mi massa in molestie a sit. Elit congue.</p>
         
       </div>
-      <Button extraStyle={"mt-[65px] h-[59px]  hover:bg-transparent border-[2px] hover:border-[#1DA1F2] hover:text-[#1DA1F2] duration-300"} type={"submit"} >
+      <Button extraStyle={"mt-[65px] w-full h-[59px]  hover:bg-transparent border-[2px] hover:border-[#1DA1F2] hover:text-[#1DA1F2] duration-300"} type={"submit"} >
       
         {isLoading ? <img className='scale-[3] mx-auto' src={loading} alt="loading img" width={22} />: "Next"}
       </Button>
