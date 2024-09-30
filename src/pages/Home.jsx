@@ -88,7 +88,7 @@ function Home() {
         <div className={`flex  ${postImgUrl ? "items-start" : "items-center"} space-x-[15px]`}>
           <img className='rounded-full' src="https://picsum.photos/800/800" alt="" width={60} height={60} />
           
-          <div className="">
+          <div className="w-[80%]">
             <input onChange={(e) => setInputValue(e.target.value)} className='w-[80%] font-semibold text-[22px] leading-[29px] placeholder:text-[#828282] outline-none p-1' type="text" placeholder='What’s happening' required name='tweetDate' />
             {postImgUrl ? 
             <div className='border-[1px] border-slate-500 rounded-lg p-2 mt-8 relative'>
@@ -122,7 +122,7 @@ function Home() {
             <CalendarIcon  />
           </label>
         </div>
-        <Button extraStyle={`w-[108px] absolute duration-300 right-[18px] bottom-2 ${inputValue ? "" : "cursor-not-allowed opacity-40 hover:opacity-40"}`} type={inputValue ? "submit" : "button"}>
+        <Button extraStyle={`w-[110px] absolute duration-300 right-[18px] bottom-2 ${inputValue ? "" : "cursor-not-allowed opacity-40 hover:opacity-40"}`} type={inputValue ? "submit" : "button"}>
           {isLoading ? <img className="scale-[3] mx-auto" src={Loading} alt="" width={22} /> : "Tweet"}  
         </Button>
       </form>
