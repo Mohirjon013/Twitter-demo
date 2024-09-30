@@ -99,7 +99,7 @@ function Navbar() {
             </NavLink>
         ))}
       </div>
-      <Button type={"button"} extraStyle={"py-[15px] mt-[30px]"}  >Tweet</Button>
+      <Button type={"button"} extraStyle={"py-[15px] mt-[30px]"}>Tweet</Button>
       <div className="flex gap-[10px] absolute bottom-[30px]">
         <img className='rounded-full' src="https://picsum.photos/500/500" alt="icon" width={50} height={50} />
         <div className="flex items-center gap-[42px]">

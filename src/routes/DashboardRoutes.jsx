@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
-import { Home, Profile } from '../pages'
+import { Home, More, Profile } from '../pages'
 import Navbar from '../components/Navbar'
 import Sitebar from '../components/Sitebar'
 import SiteBarProfile from '../components/SiteBarProfile'
@@ -23,7 +23,10 @@ function Dashboard() {
       <div className="w-[50%]">
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/profile' element={<Profile/>}/>          
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/more' element={<More/>}/>
+          {/* <Route path='*' element={<NotFound/>}/> */}
+              
         </Routes>
       </div>
       {sidebar}

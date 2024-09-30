@@ -122,7 +122,7 @@ function Home() {
             <CalendarIcon  />
           </label>
         </div>
-        <Button extraStyle={`w-[110px] absolute duration-300 right-[18px] bottom-2 ${inputValue ? "" : "cursor-not-allowed opacity-40 hover:opacity-40"}`} type={inputValue ? "submit" : "button"}>
+        <Button extraStyle={`w-[111px] absolute duration-300 right-[18px] bottom-2 ${inputValue ? "" : "cursor-not-allowed opacity-40 hover:opacity-40"}`} type={inputValue ? "submit" : "button"}>
           {isLoading ? <img className="scale-[3] mx-auto" src={Loading} alt="" width={22} /> : "Tweet"}  
         </Button>
       </form>
