@@ -10,26 +10,26 @@ function Navbar() {
     const {isOpenModal, setIsOpenModal} = useContext(Context)
 
     
-    
-    const [path, setPath] = useState("Home")
+    const {path, setPath} = useContext(Context)
+    localStorage.setItem( "path" , JSON.stringify(path))
     console.log(path);
 
     const navbarList = [
         {
             id:1,
-            icon:path == "Home" ? <HomeIconActive/> : <HomeIcon/>  ,
+            icon:path == "/" ? <HomeIconActive/> : <HomeIcon/>  ,
             title:"Home",
             path: "/"
         },
         {
             id:2,
-            icon:path == "Explore" ? <ExploreIconActive/> : <ExploreIcon/>,
+            icon:path == "/explore" ? <ExploreIconActive/> : <ExploreIcon/>,
             title:"Explore",
             path: "/explore"
         },
         {
             id:3,
-            icon:path == "Notifications" ? <NotificationsIconActive/> : <NotificationsIcon/>,
+            icon:path == "/notifications" ? <NotificationsIconActive/> : <NotificationsIcon/>,
             title:"Notifications",
             path: "/notifications"
         },
@@ -41,19 +41,19 @@ function Navbar() {
         },
         {
             id:5,
-            icon:path == "Bookmarks" ? <BookmarksIconActive/> : <BookmarksIcon/>,
+            icon:path == "/bookmarks" ? <BookmarksIconActive/> : <BookmarksIcon/>,
             title:"Bookmarks",
             path: "/bookmarks"
         },
         {
             id:6,
-            icon:path == "Lists" ? <ListsIconActive/> : <ListsIcon/>,
+            icon:path == "/lists" ? <ListsIconActive/> : <ListsIcon/>,
             title:"Lists",
             path: "/lists"
         },
         {
             id:7,
-            icon:path == "Profile" ? <ProfileFillIconActive/> : <ProfileFillIcon/>,
+            icon:path == "/profile" ? <ProfileFillIconActive/> : <ProfileFillIcon/>,
             title:"Profile",
             path: "/profile"
         },
@@ -75,15 +75,10 @@ function Navbar() {
     }
 
 
-    function handleNavLinkClick(e){
+    function handleNavLinkClick(id){
+        const findArr = navbarList.find(item => item.id == id)
+        setPath(findArr.path)
 
-        if(e.target.textContent){
-            setPath(e.target.textContent)
-        }
-        // else{
-        //     console.log(e.target.nextElementChild);
-            
-        // }
     }
 
   return (
@@ -93,7 +88,7 @@ function Navbar() {
       </Link>
       <div className="mt-[49px] space-y-[30px]">
         {navbarList.map(item => (
-            <NavLink onClick={handleNavLinkClick} className={"flex font-semibold text-[18px] leading-[23px] items-center space-x-5"} key={item.id} to={item.path}>
+            <NavLink onClick={() => handleNavLinkClick(item.id)} className={"flex font-semibold text-[18px] leading-[23px] items-center space-x-5"} key={item.id} to={item.path}>
                 {item.icon}
                 <span>{item.title}</span>
             </NavLink>

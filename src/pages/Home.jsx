@@ -74,13 +74,17 @@ function Home() {
     }, 800);
   }
 
+
+  function handleDarkMode(){
+    document.documentElement.classList.toggle("dark")
+  }
   // console.log(postImgUrl);
   
   return (
     <div className="border-r-[2px] border-r-[#D8D8D8] h-[100vh] overflow-auto">
       <div className='flex items-center justify-between p-5 border-b-[2px] border-b-[#D8D8D8]'>
-        <h2 className='font-bold text-[24px] leading-[31px]'>Home</h2>
-        <button>
+        <h2 className='font-bold text-[24px] leading-[31px] dark:text-slate-700'>Home</h2>
+        <button onClick={handleDarkMode}>
           <ModeIcon/>
         </button>
       </div>

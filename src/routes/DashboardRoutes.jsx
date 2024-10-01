@@ -17,7 +17,7 @@ function Dashboard() {
     sidebar = <SiteBarProfile/>
   }
   return (
-    
+
     <div className='flex '>
       <Navbar />
       <div className="w-[50%]">
