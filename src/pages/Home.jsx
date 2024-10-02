@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { CalendarIcon, ClearIcon, CommentIcon, Dots, GiftIcon, LikeIcon, ModeIcon, ReplyIcon, SaveImgIcon, ShareIcon, SimailIcon, StatisticIcon, StatsIcon } from '../assets/images/Icons'
 import Button from '../components/Button'
 import Person1 from "../assets/images/person-img1.png"
@@ -9,9 +9,12 @@ import Kebab from "../assets/images/kebab-img.png"
 import PostItem from '../components/PostItem'
 
 import Loading from "../assets/images/loading.png"
+import { Context } from '../context/AuthContext'
 
 
 function Home() {
+  const {userPosts, setUserPosts} = useContext(Context)
+  
   const [inputValue, setInputValue] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [ postImgUrl, setPostImgUrl] = useState(null)
@@ -26,7 +29,10 @@ function Home() {
       commentCount:"10",
       replyCount:"1",
       likeCount:"8",
-      postImg:null
+      postImg:null,
+      isCommented: false,
+      isReplied: false,
+      isLiked: false
     },
     {
       id:2,
@@ -37,7 +43,10 @@ function Home() {
       commentCount:false,
       replyCount:"5",
       likeCount:"9",
-      postImg:null
+      postImg:null,
+      isCommented: false,
+      isReplied: false,
+      isLiked: false
     },
     {
       id:3,
@@ -48,7 +57,10 @@ function Home() {
       commentCount:"10",
       replyCount:"1",
       likeCount:"8",
-      postImg:Kebab
+      postImg:Kebab,
+      isCommented: false,
+      isReplied: false,
+      isLiked: false
     },
   ])
 
@@ -68,6 +80,7 @@ function Home() {
     setIsLoading(true)
     setTimeout(() => {
       setPosts([data, ...posts])
+      setUserPosts([data, ...posts])
       setIsLoading(false)
       setPostImgUrl(null)
       e.target.reset()
@@ -131,7 +144,7 @@ function Home() {
         </Button>
       </form>
       <ul>
-        {posts.map(item => <PostItem key={item.id} item={item}/>)}
+        {posts.map(item => <PostItem posts={posts} setPosts={setPosts} key={item.id} item={item}/>)}
       </ul>
     </div>
   )

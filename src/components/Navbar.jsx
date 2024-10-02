@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import Logo from "../assets/images/logo.svg"
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { BookmarksIcon, Dots, ExploreIcon, HomeIcon, ListsIcon, MassagesIcon, MoreICon, NotificationsIcon, ProfileFillIcon ,HomeIconActive, ExploreIconActive, NotificationsIconActive, BookmarksIconActive, ListsIconActive, ProfileFillIconActive} from '../assets/images/Icons'
 import Button from './Button'
 import LogOutModal from './LogOutModal'
@@ -8,28 +8,23 @@ import { Context } from '../context/AuthContext'
 function Navbar() {
     const user = JSON.parse(localStorage.getItem("token"))
     const {isOpenModal, setIsOpenModal} = useContext(Context)
-
-    
-    const {path, setPath} = useContext(Context)
-    localStorage.setItem( "path" , JSON.stringify(path))
-    console.log(path);
-
+    const {pathname} = useLocation()
     const navbarList = [
         {
             id:1,
-            icon:path == "/" ? <HomeIconActive/> : <HomeIcon/>  ,
+            icon:pathname == "/" ? <HomeIconActive/> : <HomeIcon/>  ,
             title:"Home",
             path: "/"
         },
         {
             id:2,
-            icon:path == "/explore" ? <ExploreIconActive/> : <ExploreIcon/>,
+            icon:pathname == "/explore" ? <ExploreIconActive/> : <ExploreIcon/>,
             title:"Explore",
             path: "/explore"
         },
         {
             id:3,
-            icon:path == "/notifications" ? <NotificationsIconActive/> : <NotificationsIcon/>,
+            icon:pathname == "/notifications" ? <NotificationsIconActive/> : <NotificationsIcon/>,
             title:"Notifications",
             path: "/notifications"
         },
@@ -41,19 +36,19 @@ function Navbar() {
         },
         {
             id:5,
-            icon:path == "/bookmarks" ? <BookmarksIconActive/> : <BookmarksIcon/>,
+            icon:pathname == "/bookmarks" ? <BookmarksIconActive/> : <BookmarksIcon/>,
             title:"Bookmarks",
             path: "/bookmarks"
         },
         {
             id:6,
-            icon:path == "/lists" ? <ListsIconActive/> : <ListsIcon/>,
+            icon:pathname == "/lists" ? <ListsIconActive/> : <ListsIcon/>,
             title:"Lists",
             path: "/lists"
         },
         {
             id:7,
-            icon:path == "/profile" ? <ProfileFillIconActive/> : <ProfileFillIcon/>,
+            icon:pathname == "/profile" ? <ProfileFillIconActive/> : <ProfileFillIcon/>,
             title:"Profile",
             path: "/profile"
         },
@@ -75,12 +70,6 @@ function Navbar() {
     }
 
 
-    function handleNavLinkClick(id){
-        const findArr = navbarList.find(item => item.id == id)
-        setPath(findArr.path)
-
-    }
-
   return (
     <div className='w-[25%] border-r-[2px] border-r-[#D8D8D8] relative h-[100vh] overflow-y-auto pt-[31px] pl-[100px] pr-[15px]'>
       <Link to={"/"}>
@@ -88,7 +77,7 @@ function Navbar() {
       </Link>
       <div className="mt-[49px] space-y-[30px]">
         {navbarList.map(item => (
-            <NavLink onClick={() => handleNavLinkClick(item.id)} className={"flex font-semibold text-[18px] leading-[23px] items-center space-x-5"} key={item.id} to={item.path}>
+            <NavLink  className={"flex font-semibold text-[18px] leading-[23px] items-center space-x-5"} key={item.id} to={item.path}>
                 {item.icon}
                 <span>{item.title}</span>
             </NavLink>

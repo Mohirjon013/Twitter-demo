@@ -1,10 +1,25 @@
 import React from 'react'
-import { CommentIcon, Dots, LikeIcon, ReplyIcon, ShareIcon, StatisticIcon } from '../assets/images/Icons'
+import { CommentIcon, Dots, LikeActive, LikeIcon, ReplyIcon, ShareIcon, StatisticIcon } from '../assets/images/Icons'
 
-function PostItem({item}) {
+function PostItem({item, setPosts, posts}) {
 
-    function handleChangeCount(e){
-        console.log(e.target);
+    function handleCommentClick(value){
+        if(value == "comment"){
+            item.isCommented = !item.isCommented
+            item.commentCount =  item.isCommented ? ++item.commentCount :  --item.commentCount
+            setPosts([...posts])
+        }
+        else if(value == "reply"){
+            item.isReplied = !item.isReplied
+            item.replyCount = item.isReplied ? ++item.replyCount : --item.replyCount 
+            setPosts([...posts])
+        }
+        else if(value == "like"){
+            item.isLiked = !item.isLiked
+            item.likeCount = item.isLiked ? ++item.likeCount : --item.likeCount 
+            setPosts([...posts])
+        }
+        
         
     }
   return (
@@ -22,16 +37,16 @@ function PostItem({item}) {
         </button>
         {item.postImg ? <img className='rounded-[21px] py-[18px] pl-[75px]' src={item.postImg} alt="post img" width={679} height={453} /> : ""}
         <div className="mt-[22px] flex items-center space-x-[100px] pl-[75px]">
-            <button onClick={handleChangeCount} className='flex items-center space-x-[10px]'>
+            <button onClick={() => handleCommentClick("comment")} className={`flex items-center space-x-[10px] ${item.isCommented ? "text-blue-500" : ""}`}>
                 <CommentIcon/>
                 <span className='font-semibold text-[16px] leading-[21px]'>{item.commentCount ? item.commentCount : ""}</span>
             </button>
-            <button className='flex items-center space-x-[10px]'>
+            <button onClick={() => handleCommentClick("reply")} className={`flex items-center space-x-[10px] ${item.isReplied ? "text-green-500" : ""}`}>
                 <ReplyIcon/>
                 <span className='font-semibold text-[16px] leading-[21px]'>{item.replyCount ? item.replyCount : ""}</span>
             </button>
-            <button className='flex items-center space-x-[10px]'>
-                <LikeIcon/>
+            <button onClick={() => handleCommentClick("like")} className={`flex items-center space-x-[10px] ${item.isLiked ? "text-red-500" : ""}`}>
+                {item.isLiked ? <LikeActive/> : <LikeIcon/>}
                 <span className='font-semibold text-[16px] leading-[21px]'>{item.likeCount ? item.likeCount : ""}</span>
             </button>
             <button className='flex items-center space-x-[10px]'>
